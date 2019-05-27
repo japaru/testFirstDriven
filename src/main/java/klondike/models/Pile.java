@@ -10,59 +10,59 @@ public class Pile {
 
 	private int numberOfFaceUpCards;
 	
-	private CardStack cardStack;	
-
+    private Stack<Card> cards;
+    
 	public Pile(int number, List<Card> cards) {
 		assert cards.size() > 0;
 		
-		this.cardStack = new CardStack();		
+		this.cards = new Stack<Card>();
 		this.number = number;
 		this.numberOfFaceUpCards = 0;
-		this.cardStack.cards.addAll(cards);
+		this.cards.addAll(cards);
 		this.flipFirstCard();
 	}
 
 	public void push(Card card) {
 		assert this.fitsIn(card);
-		this.cardStack.push(card);
+		this.cards.push(card);
 		this.numberOfFaceUpCards++;
 	}
 
 	public Card pop() {
 		this.numberOfFaceUpCards--;
-		return this.cardStack.pop();
+		return this.cards.pop();
 	}
 
 	private void flipFirstCard() {
-		assert !this.cardStack.empty() && this.numberOfFaceUpCards == 0 && !this.cardStack.peek().isFacedUp();
-		this.cardStack.peek().flip();
+		assert !this.empty() && this.numberOfFaceUpCards == 0 && !this.peek().isFacedUp();
+		this.peek().flip();
 		this.numberOfFaceUpCards++;
 	}
 
 	public boolean fitsIn(Card card) {
 		assert card != null;
-		return (this.cardStack.empty() && card.getNumber() == Number.KING) || (!this.cardStack.empty()
-				&& this.cardStack.peek().isNextTo(card) && this.cardStack.peek().getColor() != card.getColor());
+		return (this.empty() && card.getNumber() == Number.KING) || (!this.empty()
+				&& this.peek().isNextTo(card) && this.peek().getColor() != card.getColor());
 	}
 
 	public List<Card> getTop(int numberOfCards) {
 		assert numberOfCards <= this.numberOfFaceUpCards;
-		return new ArrayList<Card>(this.cardStack.cards.subList(this.cardStack.cards.size() - numberOfCards, this.cardStack.cards.size()));
+		return new ArrayList<Card>(this.cards.subList(this.cards.size() - numberOfCards, this.cards.size()));
 	}
 
 	public void addToTop(List<Card> cards) {
 		assert cards != null;
-		this.cardStack.cards.addAll(cards);
+		this.cards.addAll(cards);
 		this.numberOfFaceUpCards += cards.size();
 	}
 
 	public void removeTop(int numberOfCards) {
 		assert numberOfCards <= this.numberOfFaceUpCards;
 		for (int i = 0; i < numberOfCards; i++) {
-			this.cardStack.pop();
+			this.cards.pop();
 			numberOfFaceUpCards--;
 		}
-		if (this.numberOfFaceUpCards == 0 && !this.cardStack.empty()) {
+		if (this.numberOfFaceUpCards == 0 && !this.empty()) {
 			flipFirstCard();
 		}
 	}
@@ -72,11 +72,11 @@ public class Pile {
 	}
 
 	public boolean empty() {
-		return this.cardStack.empty();
+		return this.cards.empty();
 	}
 
 	public Stack<Card> getCards() {
-		return this.cardStack.cards;
+		return this.cards;
 	}
 
 	public int getNumber() {
@@ -84,7 +84,7 @@ public class Pile {
 	}
 
     public Card peek() {
-        return this.cardStack.peek();
+        return this.cards.peek();
     }
 	
 }
