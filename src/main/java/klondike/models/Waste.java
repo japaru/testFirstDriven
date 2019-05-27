@@ -1,26 +1,28 @@
 package klondike.models;
 
+import java.util.Stack;
+
 public class Waste {
-	private CardStack cardStack;
+    private Stack<Card> cards;
 	
 	public Waste() {
-		this.cardStack = new CardStack();
+		this.cards = new Stack<Card>();
 	}
 	
     public boolean empty() {
-        return this.cardStack.empty();
+        return this.cards.empty();
     }
 
     public Card peek() {
-        return this.cardStack.peek();
+        return this.cards.peek();
     }
 
     public Card pop() {
-        return this.cardStack.pop();
+        return this.cards.pop();
     }
 
     public void push(Card card) {
-        this.cardStack.push(card);
+        this.cards.push(card);
     }
 
 }
