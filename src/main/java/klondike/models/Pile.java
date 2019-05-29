@@ -28,6 +28,13 @@ public class Pile {
 		this.numberOfFaceUpCards++;
 	}
 
+	public void push(List<Card> cards) {
+		assert cards != null;
+		for (Card card: cards) {
+			this.push(card);
+		}
+	}
+	
 	public Card pop() {
 		this.numberOfFaceUpCards--;
 		return this.cards.pop();
@@ -48,13 +55,6 @@ public class Pile {
 	public List<Card> getTop(int numberOfCards) {
 		assert numberOfCards <= this.numberOfFaceUpCards;
 		return new ArrayList<Card>(this.cards.subList(this.cards.size() - numberOfCards, this.cards.size()));
-	}
-
-	public void addToTop(List<Card> cards) {
-		assert cards != null;
-		for (Card card: cards) {
-			this.push(card);
-		}
 	}
 	
 	public void removeTop(int numberOfCards) {
