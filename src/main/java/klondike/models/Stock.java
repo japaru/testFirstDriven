@@ -22,11 +22,13 @@ public class Stock {
 
     public List<Card> takeTop(int quantity) {
         assert 0 < quantity && quantity <= this.cards.size();
-        List<Card> cardsToReturn = new ArrayList<Card>(this.cards.subList(0, quantity));
-        this.cards.removeAll(cardsToReturn);
+        List<Card> cardsToReturn = new ArrayList<Card>();
+        for(int index = 0; index < quantity; index++) {
+        	cardsToReturn.add(this.pop());
+        }
         return cardsToReturn;
     }
-
+    
     public boolean empty() {
         return this.cards.empty();
     }
