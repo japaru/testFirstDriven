@@ -10,15 +10,18 @@ public class Stock {
     private Stack<Card> cards;
 	
     public Stock() {
-    	this.cards = new Stack<Card>();
-		
-        for (Suit suit : Suit.values()) {
+    	this.cards = new Stack<Card>();		
+        cardsCreation();
+        Collections.shuffle(this.cards);
+    }
+
+	private void cardsCreation() {
+		for (Suit suit : Suit.values()) {
             for (Number number : Number.values()) {
                 this.cards.add(new Card(suit, number));
             }
         }
-        Collections.shuffle(this.cards);
-    }
+	}
 
     public List<Card> pop(int quantity) {
         assert 0 < quantity && quantity <= this.cards.size();
