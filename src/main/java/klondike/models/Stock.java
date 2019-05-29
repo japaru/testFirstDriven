@@ -20,7 +20,7 @@ public class Stock {
         Collections.shuffle(this.cards);
     }
 
-    public List<Card> takeTop(int quantity) {
+    public List<Card> pop(int quantity) {
         assert 0 < quantity && quantity <= this.cards.size();
         List<Card> cardsToReturn = new ArrayList<Card>();
         for(int index = 0; index < quantity; index++) {
@@ -29,16 +29,16 @@ public class Stock {
         return cardsToReturn;
     }
     
+    public Card pop() {
+        return this.cards.pop();
+    }
+
     public boolean empty() {
         return this.cards.empty();
     }
 
     public Card peek() {
         return this.cards.peek();
-    }
-
-    public Card pop() {
-        return this.cards.pop();
     }
 
     public void push(Card card) {
