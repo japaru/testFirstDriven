@@ -39,7 +39,17 @@ public class Pile {
 		this.numberOfFaceUpCards--;
 		return this.cards.pop();
 	}
-
+	
+	public void pop(int numberOfCards) {
+		assert numberOfCards <= this.numberOfFaceUpCards;
+		for (int i = 0; i < numberOfCards; i++) {
+			this.pop();
+		}
+		if (this.numberOfFaceUpCards == 0 && !this.empty()) {
+			flipFirstCard();
+		}
+	}
+	
 	private void flipFirstCard() {
 		assert !this.empty() && this.numberOfFaceUpCards == 0 && !this.peek().isFacedUp();
 		this.peek().flip();
@@ -57,16 +67,6 @@ public class Pile {
 		return new ArrayList<Card>(this.cards.subList(this.cards.size() - numberOfCards, this.cards.size()));
 	}
 	
-	public void removeTop(int numberOfCards) {
-		assert numberOfCards <= this.numberOfFaceUpCards;
-		for (int i = 0; i < numberOfCards; i++) {
-			this.pop();
-		}
-		if (this.numberOfFaceUpCards == 0 && !this.empty()) {
-			flipFirstCard();
-		}
-	}
-
 	public int numberOfFaceUpCards() {
 		return this.numberOfFaceUpCards;
 	}
