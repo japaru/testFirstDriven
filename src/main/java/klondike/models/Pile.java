@@ -52,15 +52,15 @@ public class Pile {
 
 	public void addToTop(List<Card> cards) {
 		assert cards != null;
-		this.cards.addAll(cards);
-		this.numberOfFaceUpCards += cards.size();
+		for (Card card: cards) {
+			this.push(card);
+		}
 	}
-
+	
 	public void removeTop(int numberOfCards) {
 		assert numberOfCards <= this.numberOfFaceUpCards;
 		for (int i = 0; i < numberOfCards; i++) {
-			this.cards.pop();
-			numberOfFaceUpCards--;
+			this.pop();
 		}
 		if (this.numberOfFaceUpCards == 0 && !this.empty()) {
 			flipFirstCard();
