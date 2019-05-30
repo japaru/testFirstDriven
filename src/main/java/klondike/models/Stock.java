@@ -11,7 +11,7 @@ public class Stock {
 	
     public Stock() {
     	this.cards = new Stack<Card>();		
-        cardsCreation();
+        this.cardsCreation();
         Collections.shuffle(this.cards);
     }
 

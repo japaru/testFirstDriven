@@ -22,12 +22,12 @@ public class Game {
         this.stock = new Stock();
         this.waste = new Waste();
         this.foundations = new HashMap<Suit, Foundation>();
-        foundationsSetup();
+        this.foundationsSetup();
         this.piles = new ArrayList<Pile>();
-        pilesSetup();
+        this.pilesInitialization();
     }
 
-	private void pilesSetup() {
+	private void pilesInitialization() {
 		for (int i = 0; i < Game.NUMBER_OF_PILES; i++) {
             this.piles.add(new Pile(i + 1, this.stock.pop(i + 1)));
         }
