@@ -45,12 +45,9 @@ public class Pile {
 		for (int i = 0; i < numberOfCards; i++) {
 			this.pop();
 		}
-		if (this.numberOfFaceUpCards == 0 && !this.empty()) {
-			flipFirstCard();
-		}
 	}
 	
-	private void flipFirstCard() {
+	public void flipFirstCard() {
 		assert !this.empty() && this.numberOfFaceUpCards == 0 && !this.peek().isFacedUp();
 		this.peek().flip();
 		this.numberOfFaceUpCards++;

@@ -127,6 +127,9 @@ public class Game {
         }
         foundation.push(card);
         pile.pop(1);
+		if (!pile.empty() && pile.numberOfFaceUpCards() == 0) {
+			pile.flipFirstCard();
+        }
         return null;
     }
 

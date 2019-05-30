@@ -96,6 +96,9 @@ public class PileTest{
 		pile.push(new CardBuilder().number(Number.EIGHT).suit(Suit.DIAMONDS).facedUp().build());
 		pile.push(new CardBuilder().number(Number.SEVEN).suit(Suit.PIKES).facedUp().build());
 		pile.pop(4);
+		if (!pile.empty() && pile.numberOfFaceUpCards() == 0) {
+			pile.flipFirstCard();
+		}
 		assertTrue(pile.pop().isFacedUp());
 		assertTrue(pile.empty());
 	}
